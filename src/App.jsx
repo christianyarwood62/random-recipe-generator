@@ -7,7 +7,9 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools initialIsOpen={false} />
+      <div style={{ fontSize: "16px" }}>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </div>
       <RecipePage />
     </QueryClientProvider>
   );
