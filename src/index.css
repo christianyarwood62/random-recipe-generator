@@ -1,0 +1,24 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  background-color: rgb(214, 198, 159);
+}
+
+h1 {
+  font-size: 3.6rem;
+  color: #333;
+}
+
+p,
+label {
+  font-size: 1.8rem;
+  color: #333;
+}
