@@ -14,10 +14,16 @@ export async function getRecipes() {
 }
 
 // Add a meal to supabase
-export async function addRecipe() {
+export async function addRecipe(recipe) {
   const { data, error } = await supabase
     .from("recipes")
-    .insert([{ title: "lettuce", category: "veg" }])
+    .insert([
+      {
+        title: recipe.title,
+        category: recipe.category,
+        steps: recipe.instructions,
+      },
+    ])
     .select();
 
   if (error) {

@@ -10,8 +10,8 @@ function NewMealForm() {
     formState: { errors },
   } = useForm();
 
-  function onSubmit(data) {
-    console.log(data);
+  function onSubmit(recipe) {
+    addRecipe(recipe);
   }
 
   function handleAddRecipe() {
@@ -23,7 +23,7 @@ function NewMealForm() {
       <button>X</button>
       <h1>Add New Meal</h1>
       <label htmlFor="meal-title">Meal Title</label>
-      <input type="text" name="meal-title" {...register("name")} />
+      <input type="text" name="meal-title" {...register("title")} />
       <label htmlFor="meal-category">Meal Category</label>
       <input type="text" name="meal-category" {...register("category")} />
       <label htmlFor="meal-instructions">Meal Instructions</label>
