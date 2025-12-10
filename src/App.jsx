@@ -12,13 +12,9 @@ const queryClient = new QueryClient();
 // Browser Router
 const router = createBrowserRouter([
   {
-    path: "/",
     element: <AppLayout />,
     children: [
-      {
-        path: "/randomRecipe",
-        element: <RecipePage />,
-      },
+      { index: true, element: <RecipePage /> },
       {
         path: "/recipeList",
         element: <RecipeList />,
