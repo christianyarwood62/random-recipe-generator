@@ -1,14 +1,30 @@
 .recipeImage {
   width: clamp(100px, 50%, 300px);
+  border-radius: 1rem;
 }
 
 .mealContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
   background-color: var(--beige);
   border-radius: 1rem;
   border: rgba(181, 42, 194, 0.326) solid 4px;
   padding: 2rem;
 }
 
+.mealHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
 .mealSteps {
   font-size: 1.4rem;
+}
+
+.displayTop {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }

@@ -39,7 +39,7 @@ function RecipePage() {
           <Spinner />
         ) : (
           <>
-            <p>
+            <p className="lightText">
               Add your favourite meals and let fate decide what's for dinner!
             </p>
             <button
@@ -49,7 +49,9 @@ function RecipePage() {
             >
               + Add New Meal
             </button>
-            <p>Total meals in your collection: {recipes?.recipes?.length}</p>
+            <p className="lightText">
+              Total meals in your collection: {recipes?.recipes?.length}
+            </p>
             <button className="main-button" onClick={handleChooseRandomRecipe}>
               Pick a Random Meal
             </button>

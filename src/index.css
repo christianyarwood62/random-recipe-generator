@@ -38,7 +38,7 @@ h3 {
 
 p,
 label {
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   color: #333;
 }
 
@@ -73,7 +73,12 @@ button {
 a {
   all: unset;
   font-size: 1.8rem;
+  color: rgb(57, 57, 57);
 }
 
 a:hover {
+}
+
+.lightText {
+  color: rgb(105, 105, 105);
 }
