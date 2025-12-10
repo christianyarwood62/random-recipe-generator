@@ -15,6 +15,18 @@ export async function getRecipes() {
 
 // Add a meal to supabase
 export async function addRecipe(recipe) {
+  // Upload the image to supabase bucket
+  uploadFile(recipe.image[0]);
+
+  // Declare the filename as the same name when it uploaded to the bucket
+  const fileName = `${Date.now()}-${recipe.image[0].name}`;
+
+  // Get the URL of the newly added image in the supabase bucket
+  const { data: imageUrl } = supabase.storage
+    .from("recipe-images")
+    .getPublicUrl(fileName);
+
+  // insert the newly created recipe into supabase recipes table
   const { data, error } = await supabase
     .from("recipes")
     .insert([
@@ -22,6 +34,7 @@ export async function addRecipe(recipe) {
         title: recipe.title,
         category: recipe.category,
         steps: recipe.instructions,
+        image_url: imageUrl.publicUrl,
       },
     ])
     .select();
@@ -36,10 +49,9 @@ export async function addRecipe(recipe) {
 
 // Add image to supabase bucket
 export async function uploadFile(file) {
-  console.log(file.name);
   const { data, error } = await supabase.storage
     .from("recipe-images")
-    .upload(`${file.name}`, file);
+    .upload(`${Date.now()}-${file.name}`, file);
   if (error) {
     console.error(error.message);
     console.log("Image failed to upload to storage");

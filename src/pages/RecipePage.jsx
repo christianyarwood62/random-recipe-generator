@@ -4,7 +4,6 @@ import styles from "./RecipePage.module.css";
 import MealDisplay from "../features/MealDisplay";
 import useRecipes from "../features/useRecipes";
 import Spinner from "../ui/Spinner";
-import { useNavigate } from "react-router";
 
 function RecipePage() {
   const [formOpen, setFormOpen] = useState(false);
@@ -12,9 +11,6 @@ function RecipePage() {
 
   // Access the recipes from the cache
   const { recipes, error, isPending } = useRecipes();
-
-  // Used to navigate between pages
-  const navigate = useNavigate();
 
   // When the user wants to create a new meal, this opens the form
   function handleOpenForm() {
@@ -39,7 +35,6 @@ function RecipePage() {
       )}
       <section className={styles.section}>
         <h1>Random Meal Generator</h1>
-        <button onClick={() => navigate("/recipeList")}>Recipe List</button>
         {isPending ? (
           <Spinner />
         ) : (
@@ -47,19 +42,26 @@ function RecipePage() {
             <p>
               Add your favourite meals and let fate decide what's for dinner!
             </p>
-            <button disabled={formOpen} onClick={handleOpenForm}>
+            <button
+              className="accent-button"
+              disabled={formOpen}
+              onClick={handleOpenForm}
+            >
               + Add New Meal
             </button>
             <p>Total meals in your collection: {recipes?.recipes?.length}</p>
-            <button onClick={handleChooseRandomRecipe}>
+            <button className="main-button" onClick={handleChooseRandomRecipe}>
               Pick a Random Meal
             </button>
-            <p>Add some meals to get started!</p>
           </>
         )}
       </section>
-      <section className={styles.section}>
-        {randomRecipe ? <MealDisplay randomRecipe={randomRecipe} /> : ""}
+      <section className={`${styles.section} ${styles.mealContainer}`}>
+        {randomRecipe ? (
+          <MealDisplay randomRecipe={randomRecipe} />
+        ) : (
+          "Let fate decide your meal!"
+        )}
       </section>
     </>
   );

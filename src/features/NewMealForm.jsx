@@ -14,9 +14,9 @@ function NewMealForm({ onFormOpen }) {
   } = useForm();
 
   function onSubmit(recipe) {
-    // createRecipe(recipe);
-    // console.log(recipe.image);
-    uploadFile(recipe.image[0]);
+    createRecipe(recipe);
+    // console.log(recipe.image[0].name);
+    // uploadFile(recipe.image[0]);
   }
 
   return (
