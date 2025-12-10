@@ -33,3 +33,17 @@ export async function addRecipe(recipe) {
 
   return { data, error };
 }
+
+// Add image to supabase bucket
+export async function uploadFile(file) {
+  console.log(file.name);
+  const { data, error } = await supabase.storage
+    .from("recipe-images")
+    .upload(`${file.name}`, file);
+  if (error) {
+    console.error(error.message);
+    console.log("Image failed to upload to storage");
+  } else {
+    console.log("Image successfuly uploaded to storage");
+  }
+}

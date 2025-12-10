@@ -29,7 +29,7 @@ function RecipePage() {
   }
 
   return (
-    <main className={styles.main}>
+    <>
       {formOpen ? (
         <section>
           <NewMealForm onFormOpen={setFormOpen} />
@@ -61,7 +61,7 @@ function RecipePage() {
       <section className={styles.section}>
         {randomRecipe ? <MealDisplay randomRecipe={randomRecipe} /> : ""}
       </section>
-    </main>
+    </>
   );
 }
 
