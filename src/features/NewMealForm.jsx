@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import styles from "./NewMealForm.module.css";
 import { useCreateRecipe } from "./useCreateRecipe";
-import { uploadFile } from "../services/recipesApi";
 
 function NewMealForm({ onFormOpen }) {
   const { isCreating, createRecipe } = useCreateRecipe(() => onFormOpen(false));
@@ -15,8 +14,6 @@ function NewMealForm({ onFormOpen }) {
 
   function onSubmit(recipe) {
     createRecipe(recipe);
-    // console.log(recipe.image[0].name);
-    // uploadFile(recipe.image[0]);
   }
 
   return (

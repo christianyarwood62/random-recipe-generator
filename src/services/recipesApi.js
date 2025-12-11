@@ -44,11 +44,13 @@ export async function addRecipe(recipe) {
     throw new Error("Recipe could not be added");
   }
 
+  console.log("Recipe successfully added to supabase table");
+
   return { data, error };
 }
 
 // Add image to supabase bucket
-export async function uploadFile(file) {
+async function uploadFile(file) {
   const { data, error } = await supabase.storage
     .from("recipe-images")
     .upload(`${Date.now()}-${file.name}`, file);
@@ -58,4 +60,17 @@ export async function uploadFile(file) {
   } else {
     console.log("Image successfuly uploaded to storage");
   }
+}
+
+// Delete a recipe from the supabase table
+export async function deleteRecipe(id) {
+  const { error } = await supabase.from("recipes").delete().eq("id", id);
+
+  if (error) {
+    console.error(error.message);
+    throw new Error("Recipe could not be deleted");
+  }
+
+  console.log("Recipe successfully deleted from supabase table");
+  return;
 }
