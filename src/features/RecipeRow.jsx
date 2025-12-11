@@ -1,7 +1,9 @@
-import { deleteRecipe } from "../services/recipesApi";
 import styles from "./RecipeRow.module.css";
+import { useDeleteRecipe } from "./useDeleteRecipe";
 
 function RecipeRow({ recipe }) {
+  const { deleteRecipe, isDeleting } = useDeleteRecipe();
+
   function handleDeleteRecipe(id) {
     deleteRecipe(id);
     console.log(id);
