@@ -15,13 +15,13 @@ export async function getRecipes() {
 
 // Add a meal to supabase
 export async function addRecipe(recipe) {
+  // This checks if an image has been selected by the user
   if (recipe.image.length > 0) {
-    const imageFileName = `${Date.now()}-${recipe?.image[0].name}`;
-
-    console.log(imageFileName);
     // Make a unique name for the image file name
+    const imageFileName = `${Date.now()}-${recipe?.image[0].name}`;
+    console.log(imageFileName);
 
-    console.log(recipe);
+    // Upload the image to supabase bucket
     const { error: storageError } = await supabase.storage
       .from("recipe-images")
       .upload(imageFileName, recipe.image[0]);
@@ -60,7 +60,7 @@ export async function addRecipe(recipe) {
     return { data, error };
   }
 
-  // insert the newly created recipe into supabase recipes table
+  // This inserts a new recipe into the supabase table with no image attached
   const { data, error } = await supabase
     .from("recipes")
     .insert([

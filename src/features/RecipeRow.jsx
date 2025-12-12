@@ -32,7 +32,8 @@ function RecipeRow({ recipe }) {
             onClick={() => handleDeleteRecipe(recipe.id)}
             className={`accent-button ${styles.deleteBtn}`}
           >
-            Delete
+            <span className={styles.bigButton}>Delete</span>
+            <span className={styles.smallButton}>X</span>
           </button>
         </li>
       )}
