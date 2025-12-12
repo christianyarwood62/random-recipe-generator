@@ -1,10 +1,7 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { getRecipes } from "../services/recipesApi";
 
 function useRecipes() {
-  // Access the client
-  const queryClient = useQueryClient();
-
   // Queries
   const {
     data: recipes,

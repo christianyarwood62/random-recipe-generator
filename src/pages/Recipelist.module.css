@@ -1,0 +1,9 @@
+.recipeListHeader {
+  margin-bottom: 3rem;
+}
+
+.recipeList {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}

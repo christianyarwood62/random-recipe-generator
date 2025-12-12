@@ -15,16 +15,50 @@ export async function getRecipes() {
 
 // Add a meal to supabase
 export async function addRecipe(recipe) {
-  // Upload the image to supabase bucket
-  uploadFile(recipe.image[0]);
+  if (recipe.image.length > 0) {
+    const imageFileName = `${Date.now()}-${recipe?.image[0].name}`;
 
-  // Declare the filename as the same name when it uploaded to the bucket
-  const fileName = `${Date.now()}-${recipe.image[0].name}`;
+    console.log(imageFileName);
+    // Make a unique name for the image file name
 
-  // Get the URL of the newly added image in the supabase bucket
-  const { data: imageUrl } = supabase.storage
-    .from("recipe-images")
-    .getPublicUrl(fileName);
+    console.log(recipe);
+    const { error: storageError } = await supabase.storage
+      .from("recipe-images")
+      .upload(imageFileName, recipe.image[0]);
+    if (storageError) {
+      console.error(error.message);
+      console.log("Image failed to upload to storage");
+    } else {
+      console.log("Image successfuly uploaded to storage");
+    }
+
+    // Get the URL of the newly added image in the supabase bucket
+    const { data: imageUrl } = supabase.storage
+      .from("recipe-images")
+      .getPublicUrl(imageFileName);
+
+    // insert the newly created recipe into supabase recipes table
+    const { data, error } = await supabase
+      .from("recipes")
+      .insert([
+        {
+          title: recipe.title,
+          category: recipe.category,
+          steps: recipe.instructions,
+          image_url: imageUrl.publicUrl,
+        },
+      ])
+      .select();
+
+    if (error) {
+      console.error(error);
+      throw new Error("Recipe could not be added");
+    }
+
+    console.log("Recipe successfully added to supabase table");
+
+    return { data, error };
+  }
 
   // insert the newly created recipe into supabase recipes table
   const { data, error } = await supabase
@@ -34,7 +68,6 @@ export async function addRecipe(recipe) {
         title: recipe.title,
         category: recipe.category,
         steps: recipe.instructions,
-        image_url: imageUrl.publicUrl,
       },
     ])
     .select();
@@ -47,19 +80,6 @@ export async function addRecipe(recipe) {
   console.log("Recipe successfully added to supabase table");
 
   return { data, error };
-}
-
-// Add image to supabase bucket
-async function uploadFile(file) {
-  const { data, error } = await supabase.storage
-    .from("recipe-images")
-    .upload(`${Date.now()}-${file.name}`, file);
-  if (error) {
-    console.error(error.message);
-    console.log("Image failed to upload to storage");
-  } else {
-    console.log("Image successfuly uploaded to storage");
-  }
 }
 
 // Delete a recipe from the supabase table

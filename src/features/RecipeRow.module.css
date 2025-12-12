@@ -1,7 +1,24 @@
 .recipeListItem {
-  display: flex;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 3fr auto;
+}
+
+.recipeCategory {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
 }
 
 .recipeImage {
   height: 100px;
+  border-radius: 1rem;
+  grid-row: 1 / 3;
+}
+
+.recipeInstructions {
+  white-space: pre-wrap;
+}
+
+.deleteBtn {
+  height: min-content;
 }

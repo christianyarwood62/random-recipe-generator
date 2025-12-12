@@ -1,3 +1,11 @@
 .form {
-  background-color: green;
+  background-color: var(--beige);
+}
+
+.gridContainer {
+  display: grid;
+}
+
+.mealInput {
+  width: 100%;
 }

@@ -5,15 +5,15 @@ import styles from "./RecipeList.module.css";
 
 function RecipeList() {
   // Access the recipes from react query
-  const { recipes, isPending, error } = useRecipes();
+  const { recipes, isPending } = useRecipes();
 
   return (
-    <section>
-      <h1>Recipe List</h1>
+    <section className={styles.recipeListSection}>
+      <h1 className={styles.recipeListHeader}>Recipe List</h1>
       {isPending ? (
         <Spinner />
       ) : (
-        <ul>
+        <ul className={styles.recipeList}>
           {recipes.recipes.map((recipe) => (
             <RecipeRow key={recipe.id} recipe={recipe} />
           ))}

@@ -11,7 +11,7 @@
   --orange-dark: rgb(220, 99, 0);
   --purple: rgba(210, 29, 234, 0.809);
   --purple-dark: rgba(178, 10, 200, 0.809);
-  --beige: #fff;
+  --beige: #f8f8f8;
 }
 
 html {
@@ -81,4 +81,16 @@ a:hover {
 
 .lightText {
   color: rgb(105, 105, 105);
+}
+
+/* REUSABLE CLASSES */
+.displayBlock {
+  display: block;
+}
+
+.resize {
+  resize: vertical;
+  min-height: 100px;
+  max-height: 300px;
+  overflow: auto;
 }
