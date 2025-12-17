@@ -7,6 +7,10 @@
   border-bottom: 1px solid grey; /* soft grey */
 }
 
+.recipeListItem:last-child {
+  border-bottom: none;
+}
+
 .recipeCategory {
   grid-column: 2 / 3;
   grid-row: 2 / 3;

@@ -3,7 +3,7 @@ import { addRecipe } from "../services/recipesApi";
 import { toast } from "react-toastify";
 
 // Accept a callback to close the form after the queries have been invalidated
-export function useCreateRecipe(closeFormCallback) {
+export function useCreateRecipe() {
   const queryClient = useQueryClient();
 
   const { mutate: createRecipe, isPending: isCreating } = useMutation({
@@ -11,7 +11,6 @@ export function useCreateRecipe(closeFormCallback) {
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["recipes"] });
       toast("Recipe successfully created");
-      closeFormCallback();
     },
     onError: (error, onMutateResult) => {
       // An error happened!

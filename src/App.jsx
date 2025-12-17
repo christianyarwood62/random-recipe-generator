@@ -5,6 +5,7 @@ import { ToastContainer } from "react-toastify";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import AppLayout from "./ui/AppLayout";
 import RecipeList from "./pages/RecipeList";
+import { ModalProvider } from "./context/ModalContext";
 
 // React Query
 const queryClient = new QueryClient();
@@ -26,11 +27,13 @@ const router = createBrowserRouter([
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-      <div style={{ fontSize: "16px" }}>
-        <ReactQueryDevtools initialIsOpen={false} />
-      </div>
-      <ToastContainer />
+      <ModalProvider>
+        <RouterProvider router={router} />
+        <div style={{ fontSize: "16px" }}>
+          <ReactQueryDevtools initialIsOpen={false} />
+        </div>
+        <ToastContainer />
+      </ModalProvider>
     </QueryClientProvider>
   );
 }

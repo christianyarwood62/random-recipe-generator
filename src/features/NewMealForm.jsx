@@ -2,8 +2,8 @@ import { useForm } from "react-hook-form";
 import styles from "./NewMealForm.module.css";
 import { useCreateRecipe } from "./useCreateRecipe";
 
-function NewMealForm({ onFormOpen }) {
-  const { isCreating, createRecipe } = useCreateRecipe(() => onFormOpen(false));
+function NewMealForm({ onClose }) {
+  const { isCreating, createRecipe } = useCreateRecipe();
 
   const {
     register,
@@ -11,13 +11,16 @@ function NewMealForm({ onFormOpen }) {
     formState: { errors },
   } = useForm();
 
-  function onSubmit(recipe) {
-    createRecipe(recipe);
+  async function onSubmit(recipe) {
+    await createRecipe(recipe);
+    onClose();
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-      <button>X</button>
+      <button type="button" className="accent-button" onClick={onClose}>
+        X
+      </button>
       <h1>Add New Meal</h1>
       <div>
         <label htmlFor="meal-title">Meal Title</label>
@@ -66,7 +69,12 @@ function NewMealForm({ onFormOpen }) {
         <button className="main-button" disabled={isCreating} type="submit">
           Add Meal
         </button>
-        <button className="accent-button" disabled={isCreating}>
+        <button
+          type="button"
+          className="accent-button"
+          onClick={onClose}
+          disabled={isCreating}
+        >
           Cancel
         </button>
       </div>

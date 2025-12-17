@@ -76,9 +76,6 @@ a {
   color: rgb(57, 57, 57);
 }
 
-a:hover {
-}
-
 .lightText {
   color: rgb(105, 105, 105);
 }
@@ -88,9 +85,21 @@ a:hover {
   display: block;
 }
 
+.flexVertCenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .resize {
   resize: vertical;
   min-height: 100px;
   max-height: 300px;
   overflow: auto;
+}
+
+.line {
+  width: 100%;
+  border-bottom: 1px solid grey;
+  margin: 4rem;
 }

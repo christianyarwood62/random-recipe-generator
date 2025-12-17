@@ -7,3 +7,7 @@
   flex-direction: column;
   gap: 2rem;
 }
+
+.emptyRecipesContainer {
+  margin-top: 12rem;
+}

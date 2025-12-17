@@ -4,13 +4,17 @@ import styles from "./RecipePage.module.css";
 import MealDisplay from "../features/MealDisplay";
 import useRecipes from "../features/useRecipes";
 import Spinner from "../ui/Spinner";
+import Modal from "../ui/Modal";
+import { useModalContext } from "../context/ModalContext";
 
 function RecipePage() {
-  const [formOpen, setFormOpen] = useState(false);
   const [randomRecipe, setRandomRecipe] = useState(null);
 
+  // Access the ModalContext state
+  const { formOpen, setFormOpen } = useModalContext();
+
   // Access the recipes from the cache
-  const { recipes, error, isPending } = useRecipes();
+  const { recipes, isPending } = useRecipes();
 
   // When the user wants to create a new meal, this opens the form
   function handleOpenForm() {
@@ -26,13 +30,9 @@ function RecipePage() {
 
   return (
     <>
-      {formOpen ? (
-        <section>
-          <NewMealForm onFormOpen={setFormOpen} />
-        </section>
-      ) : (
-        ""
-      )}
+      <Modal formOpen={formOpen} onClose={() => setFormOpen(false)}>
+        <NewMealForm onClose={() => setFormOpen(false)} />
+      </Modal>
       <section className={styles.section}>
         <h1>Random Meal Generator</h1>
         {isPending ? (
@@ -58,6 +58,7 @@ function RecipePage() {
           </>
         )}
       </section>
+
       <section className={`${styles.section} ${styles.mealContainer}`}>
         {randomRecipe ? (
           <MealDisplay randomRecipe={randomRecipe} />
