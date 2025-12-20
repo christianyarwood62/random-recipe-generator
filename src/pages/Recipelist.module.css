@@ -9,5 +9,52 @@
 }
 
 .emptyRecipesContainer {
-  margin-top: 12rem;
+  margin-top: 4rem;
+  padding-top: 4rem;
+  background-color: var(--beige);
+  border-radius: 1rem;
+  box-shadow: 3px 3px 5px rgb(169, 169, 169);
+}
+
+.iconStyle {
+  color: var(--orange);
+  width: 3rem;
+  height: 3rem;
+  stroke-width: 1px;
+}
+
+.tips {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 3rem;
+  margin-left: 5rem;
+  margin-right: 5rem;
+}
+
+.tipsHeader {
+  width: 20rem;
+  margin: 50px auto;
+  text-align: center;
+}
+
+.tipContainer {
+  border-radius: 1rem;
+  padding: 15px;
+}
+
+.tipHeader {
+  padding-bottom: 10px;
+}
+
+.tipMiddleContainer {
+  background-color: rgba(247, 0, 255, 0.092);
+}
+
+.tipOutsideContainer {
+  background-color: var(--beige-dark);
+}
+
+.suggestionText {
+  width: 80%;
+  margin: 50px auto;
 }

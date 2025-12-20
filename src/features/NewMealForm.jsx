@@ -2,6 +2,9 @@ import { useForm } from "react-hook-form";
 import styles from "./NewMealForm.module.css";
 import { useCreateRecipe } from "./useCreateRecipe";
 
+import { IoCloseOutline } from "react-icons/io5";
+import { LuUpload } from "react-icons/lu";
+
 function NewMealForm({ onClose }) {
   const { isCreating, createRecipe } = useCreateRecipe();
 
@@ -18,11 +21,14 @@ function NewMealForm({ onClose }) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-      <button type="button" className="accent-button" onClick={onClose}>
-        X
-      </button>
-      <h1>Add New Meal</h1>
-      <div>
+      <div className={styles.formHeader}>
+        <h1>Add New Meal</h1>
+        <button type="button" className="close-button" onClick={onClose}>
+          <IoCloseOutline />
+        </button>
+      </div>
+      <div className="line"></div>
+      <div className={styles.inputs}>
         <label htmlFor="meal-title">Meal Title</label>
         <input
           className={`displayBlock ${styles.mealInput}`}
@@ -60,23 +66,29 @@ function NewMealForm({ onClose }) {
           Meal Photo (optional - we'll find one for you!)
         </label>
         <input
-          className="displayBlock"
+          className="hidden"
           disabled={isCreating}
           type="file"
-          name="meal-image"
+          id="meal-image"
+          placeholder="tedst"
           {...register("image")}
         />
-        <button className="main-button" disabled={isCreating} type="submit">
-          Add Meal
-        </button>
-        <button
-          type="button"
-          className="accent-button"
-          onClick={onClose}
-          disabled={isCreating}
-        >
-          Cancel
-        </button>
+        <label className={styles.inputLabel} htmlFor="meal-image">
+          <LuUpload /> <span>Choose Photo</span>
+        </label>
+        <div className={styles.buttons}>
+          <button className="accent-button" disabled={isCreating} type="submit">
+            Add Meal
+          </button>
+          <button
+            type="button"
+            className="grey-button"
+            onClick={onClose}
+            disabled={isCreating}
+          >
+            Cancel
+          </button>
+        </div>
       </div>
     </form>
   );

@@ -6,6 +6,7 @@ import useRecipes from "../features/useRecipes";
 import Spinner from "../ui/Spinner";
 import Modal from "../ui/Modal";
 import { useModalContext } from "../context/ModalContext";
+import Carousel from "../features/Carousel";
 
 function RecipePage() {
   const [randomRecipe, setRandomRecipe] = useState(null);
@@ -63,9 +64,16 @@ function RecipePage() {
         {randomRecipe ? (
           <MealDisplay randomRecipe={randomRecipe} />
         ) : (
-          "Let fate decide your meal!"
+          <>
+            <span>"Let fate decide your meal!"</span>
+          </>
         )}
       </section>
+      {!randomRecipe && (
+        <section>
+          <Carousel />
+        </section>
+      )}
     </>
   );
 }

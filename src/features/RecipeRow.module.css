@@ -4,7 +4,7 @@
   grid-template-columns: 1fr 1fr 2fr auto;
   gap: 3rem;
   padding-bottom: 3rem;
-  border-bottom: 1px solid grey; /* soft grey */
+  border-bottom: 1px solid grey;
 }
 
 .recipeListItem:last-child {

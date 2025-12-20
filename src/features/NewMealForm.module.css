@@ -1,11 +1,47 @@
 .form {
   background-color: var(--beige);
+  width: clamp(30rem, 40vw, 60rem);
 }
 
 .gridContainer {
   display: grid;
 }
 
-.mealInput {
-  width: 100%;
+.formHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.inputs input,
+.inputs textarea {
+  margin-bottom: 15px;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: 1fr 8rem;
+  gap: 1rem;
+}
+
+.inputLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--grey);
+  width: fit-content;
+  padding: 7px 12px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.inputLabel:hover {
+  background-color: var(--dark-grey);
 }

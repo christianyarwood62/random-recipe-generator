@@ -1,0 +1,12 @@
+.imgContainer {
+  height: 300px;
+  width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+.imgContainer img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+}
